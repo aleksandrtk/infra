@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: website
-        image: localhost:5000/website:latest
+        image: 192.168.49.1:5000/website:latest
         ports:
         - containerPort: 80
