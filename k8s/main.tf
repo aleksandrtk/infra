@@ -12,6 +12,7 @@ resource "helm_release" "jenkins" {
   repository       = "https://charts.jenkins.io"
   namespace        = "jenkins"
   create_namespace = true
+  replace = false
 }
 
 resource "helm_release" "argocd" {
@@ -20,4 +21,5 @@ resource "helm_release" "argocd" {
   repository       = "https://argoproj.github.io/argo-helm"
   namespace        = "argocd"
   create_namespace = true
+  replace = false
 }
