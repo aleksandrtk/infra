@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: website-ingress
   annotations:
+    argocd.argoproj.io/sync-options: Validate=false
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
