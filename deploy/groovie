@@ -1,0 +1,32 @@
+pipeline {
+  agent {
+    kubernetes {
+      defaultContainer 'jnlp'
+    }
+  }
+
+  stages {
+    stage('Checkout Infrastructure Code') {
+      steps {
+          git branch: 'main', url: 'https://github.com/aleksandrtk/web.git'
+        }
+    }
+
+    stage('Sync with ArgoCD') {
+      steps {
+        container('kubectl') {
+          sh 'kubectl apply -f k8s/argocd-application.yaml'
+        }
+      }
+    }
+  }
+
+  post {
+    success {
+      echo 'Synced with ArgoCD!'
+    }
+    failure {
+      echo 'Error deploy'
+    }
+  }
+}
